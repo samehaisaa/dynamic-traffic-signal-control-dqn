@@ -50,12 +50,12 @@ class TrafficEnv(gym.Env):
         text = self.font.render(f"Lane 1: {self.state[0]} vehicles, Lane 2: {self.state[1]} vehicles", True, (0, 0, 0))
         self.screen.blit(text, (50, 50))
 
-        if self.state[0] > 5:
+        if self.state[0] > 2:
             pygame.draw.rect(self.screen, (255, 0, 0), (150, 150, 50, 100))  # Red light
         else:
             pygame.draw.rect(self.screen, (0, 255, 0), (150, 150, 50, 100))  # Green light
 
-        if self.state[1] > 5:
+        if self.state[1] > 2:
             pygame.draw.rect(self.screen, (255, 0, 0), (400, 150, 50, 100))  # Red light
         else:
             pygame.draw.rect(self.screen, (0, 255, 0), (400, 150, 50, 100))  # Green light
