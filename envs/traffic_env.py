@@ -23,17 +23,17 @@ class TrafficEnv(gym.Env):
         self.render_every_n_steps = 5  # Only render every few steps to avoid freezing
 
     def reset(self):
-        self.state = np.array([random.randint(0, 10), random.randint(0, 10)])
+        self.state = np.array([random.randint(0, 5), random.randint(0, 5)])
         return self.state
 
     def step(self, action):
         if action == 1:
             self.state[0] = max(0, self.state[0] - 1)  # Green light: reduce traffic
         else:
-            self.state[0] = min(10, self.state[0] + 1)  # Red light: increase traffic
+            self.state[0] = min(5, self.state[0] + 1)  # Red light: increase traffic
 
         reward = -self.state[0] + self.reward_weight * (10 - self.state[1])
-        done = bool(self.state[0] >= 10)
+        done = bool(self.state[0] >= 5)
 
         if self.render_every_n_steps > 0 and self.state[0] % self.render_every_n_steps == 0:
             self.render()  # Render the screen every few steps
