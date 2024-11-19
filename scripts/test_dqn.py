@@ -1,24 +1,28 @@
-from stable_baselines3 import DQN
-from envs.traffic_env import TrafficEnv
-from stable_baselines3.common.vec_env import DummyVecEnv
+def test_model():
+    # Load the trained model
+    model = DQN.load("./dqn_tensorboard/DQN_3")  # Or wherever your model is saved
 
-def main():
-    # Initialize the environment and load the trained model
-    env = DummyVecEnv([lambda: TrafficEnv()])
-    model = DQN.load("dqn_traffic_model")
+    # Initialize the environment
+    env = TrafficEnv()
 
-    # Run the agent in the environment
-    obs = env.reset()
-    total_reward = 0
+    # Test the model for 10 episodes
+    rewards = []
+    for episode in range(10):
+        obs = env.reset()
+        total_reward = 0
+        done = False
+        while not done:
+            # Use the model to predict the next action
+            action, _states = model.predict(obs)
+            obs, reward, done, info = env.step(action)
+            total_reward += reward
+            
+            # Render the environment to visualize it
+            env.render()
 
-    for _ in range(100):  # Run for 100 timesteps
-        action, _states = model.predict(obs)
-        obs, reward, done, _ = env.step(action)
-        total_reward += reward
-        if done:
-            break
+        rewards.append(total_reward)
+        print(f"Episode {episode + 1}: Total Reward = {total_reward}")
 
-    print(f"Total Reward: {total_reward}")
-
-if __name__ == "__main__":
-    main()
+    # Calculate and print the average reward over all episodes
+    avg_reward = sum(rewards) / len(rewards)
+    print(f"Average Reward over 10 episodes: {avg_reward}")
