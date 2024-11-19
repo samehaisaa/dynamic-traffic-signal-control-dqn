@@ -1,4 +1,5 @@
 from stable_baselines3 import DQN
+print(DQN)
 from stable_baselines3.common.vec_env import DummyVecEnv
 from envs.traffic_env import TrafficEnv
 
