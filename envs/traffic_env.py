@@ -40,7 +40,7 @@ class TrafficEnv(gym.Env):
 
         return self.state, reward, done, {}
 
-    def render(self, mode='human'):
+    def render(self, mode='h        uman'):
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
