@@ -53,7 +53,7 @@ class TrafficEnv(gym.Env):
         if self.state[0] > 2:
             pygame.draw.rect(self.screen, (255, 0, 0), (150, 150, 50, 100))  # Red light
         else:
-            pygame.draw.rect(self.screen, (0, 255, 0), (150, 150, 50, 100))  # Green light
+            pygame.draw.rect(self.screen, (0, 255, 0), (150, 120, 50, 100))  # Green light
 
         if self.state[1] > 2:
             pygame.draw.rect(self.screen, (255, 0, 0), (400, 150, 50, 100))  # Red light
