@@ -8,7 +8,7 @@ def main():
     model = create_model(env)
 
     print("Training the DQN model...")
-    train_model(model, timesteps=20000)
+    train_model(model, timesteps=2000)
 
 if __name__ == "__main__":
     main()
