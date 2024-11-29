@@ -20,7 +20,7 @@ class TrafficEnv(gym.Env):
         pygame.display.set_caption("Traffic Signal Control")
         self.font = pygame.font.SysFont("Arial", 24)
         self.clock = pygame.time.Clock()
-        self.render_every_n_steps = 5  # Only render every few steps to avoid freezing
+        self.render_every_n_steps = 5  
 
     def reset(self):
         self.state = np.array([random.randint(0, 5), random.randint(0, 5)])
@@ -28,9 +28,9 @@ class TrafficEnv(gym.Env):
 
     def step(self, action):
         if action == 1:
-            self.state[0] = max(0, self.state[0] - 1)  # Green light: reduce traffic
+            self.state[0] = max(0, self.state[0] - 1)  
         else:
-            self.state[0] = min(5, self.state[0] + 1)  # Red light: increase traffic
+            self.state[0] = min(5, self.state[0] + 1)  
 
         reward = -self.state[0] + self.reward_weight * (10 - self.state[1])
         done = bool(self.state[0] >= 5)
