@@ -19,10 +19,10 @@ class TrafficEnv(gym.Env):
 
         pygame.init()
         self.screen = pygame.display.set_mode((600, 400))
-        pygame.display.set_caption("Traffic Signal Control")
+        pygame.display.set_caption("NY Traffic Signal Control")
         self.font = pygame.font.SysFont("Arial", 24)
         self.clock = pygame.time.Clock()
-        self.render_every_n_steps = 5  # Only render every few steps to avoid freezing
+        self.render_every_n_steps = 6  
 
     def reset(self):
         self.state = np.array([random.randint(0, 5), random.randint(0, 5)])
